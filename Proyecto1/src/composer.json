@@ -1,0 +1,20 @@
+{
+    "name": "irene/proyecto1",
+    "description": "Un proyecto de ejemplo de DWES",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Irene\\Proyecto1\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Irene Payá"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "nesbot/carbon": "^3.10",
+        "ramsey/uuid": "^4.9"
+    }
+}
