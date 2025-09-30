@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netflix Website Clone</title>
-    <link rel="stylesheet" href="css/style.css"><!-- Aplico css externo -->
-    <link rel="shortcut icon" type="image/jpg" href="img/netflix-flavicon.png" />
+    <link rel="stylesheet" href="template/css/style.css"><!-- Aplico css externo -->
+    <link rel="shortcut icon" type="image/jpg" href="template/img/netflix-flavicon.png" />
     <meta name="keywords" content="html,css,clon netflix" />
     <meta name="description" content="Clon de la página principal de Netflix España hecho con HTML y CSS para la asignatura de Lenguajes de Marcas del IES Fernando Wirtz" />
     <meta name="author" content="Cristina Correa" />
@@ -25,9 +25,9 @@
 <!-- -------------------------HEADER ----------------------------------- -->
 <div class="header"> <!-- Creamos la cabecera en donde van los primeros botones y el mensaje de bienvenida -->
     <nav>
-        <img src="img/logo.png" alt="NetflixLogo" class="logo">
+        <img src="template/img/logo.png" alt="NetflixLogo" class="logo">
         <div>
-            <button class="idioma">Español<img src="img/down-icon.png"></button>
+            <button class="idioma">Español<img src="template/img/down-icon.png"></button>
             <a href="cuenta.php">
                 <button>Iniciar sesión</button>
             </a>
@@ -202,7 +202,7 @@
             <a href="#">Garantía legal</a>
         </div>
     </div>
-    <button class="idioma">Español<img src="img/down-icon.png"></button>
+    <button class="idioma">Español<img src="template/img/down-icon.png"></button>
     <p class="texto-copyright">Netflix España</p>
 </div>
 </body>
