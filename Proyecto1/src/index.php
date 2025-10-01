@@ -10,12 +10,19 @@ $router->get('/', function(){
 });
 
 $router->get('admin/', function(){
-    include_once "src/indice.php";
+    include_once "views/indice.php";
 });
 
 $router->get('/pass', function(){
+    echo "Se va a generar una contraseña</br>";
+    var_dump($_GET);
    include_once 'auxiliar/funciones.php';
-   echo generatePassword(16);
+   if(isset($_GET['num1'])){
+       echo generatePassword($_GET['num1']);
+   }else{
+       echo "Tienes que pasarme un parámetro llamado num1</br>";
+   }
+
 });
 
 $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
