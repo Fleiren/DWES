@@ -15,7 +15,10 @@
         href="https://getbootstrap.com/docs/5.3/examples/headers/"
     />
     <script src="./views/template/assets/js/color-modes.js"></script>
+    <script src="./views/template/js/cheatsheet.js"></script>
     <link href="./views/template/assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./views/template/css/cheatsheet.css" rel="stylesheet" />
+    <link href="./views/template/css/cheatsheet.rtl.css" rel="stylesheet" />
     <meta name="theme-color" content="#712cf9" />
     <link href="./views/template/css/headers.css" rel="stylesheet" />
     <style>
