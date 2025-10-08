@@ -5,6 +5,14 @@ use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 
 $router = new RouteCollector();
 
+$router->get('/', function (){
+    include_once("proyecto_irene/views/home.php");
+});
+
+$router->get('/password', function (){
+    include_once("proyecto_irene/views/password.php");
+});
+
 $router->get('/1', function(){
     return "Estoy en la página de principal";
 });
