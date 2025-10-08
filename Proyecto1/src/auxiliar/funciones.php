@@ -1,5 +1,17 @@
 <?php
-    function generatePassword(int $caracteres):string{
+use Hackzilla\PasswordGenerator\Generator\HumanPasswordGenerator;
+    function generatePassword():string{
 
-        return "Tu contraseña de $caracteres caracteres es: ";
+
+        $generator = new HumanPasswordGenerator();
+
+        try {
+            $generator
+                ->setWordList('/usr/share/dict/words')
+                ->setWordCount(3)
+                ->setWordSeparator('-');
+        } catch (\Hackzilla\PasswordGenerator\Exception\FileNotFoundException $e) {
+            return "Error al generar la contraseña.";
+        }
+        return $generator->generatePassword();
     }

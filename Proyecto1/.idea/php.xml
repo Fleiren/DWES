@@ -36,6 +36,7 @@
       <path value="$PROJECT_DIR$/src/vendor/symfony/translation-contracts" />
       <path value="$PROJECT_DIR$/src/vendor/symfony/polyfill-mbstring" />
       <path value="$PROJECT_DIR$/src/vendor/phroute/phroute" />
+      <path value="$PROJECT_DIR$/src/vendor/hackzilla/password-generator" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

@@ -5,7 +5,7 @@ use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 
 $router = new RouteCollector();
 
-$router->get('/', function(){
+$router->get('/1', function(){
     return "Estoy en la página de principal";
 });
 
