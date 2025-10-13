@@ -1,17 +1,19 @@
 <?php
-use Hackzilla\PasswordGenerator\Generator\HumanPasswordGenerator;
-    function generatePassword():string{
+
+    use Hackzilla\PasswordGenerator\Generator\ComputerPasswordGenerator;
+    function generatePassword():string
+    {
 
 
-        $generator = new HumanPasswordGenerator();
+        $generator = new \Hackzilla\PasswordGenerator\Generator\ComputerPasswordGenerator();
 
-        try {
-            $generator
-                ->setWordList('/usr/share/dict/words')
-                ->setWordCount(3)
-                ->setWordSeparator('-');
-        } catch (\Hackzilla\PasswordGenerator\Exception\FileNotFoundException $e) {
-            return "Error al generar la contraseña.";
-        }
-        return $generator->generatePassword();
-    }
+        $generator
+            ->setOptionValue(ComputerPasswordGenerator::OPTION_UPPER_CASE, true)
+            ->setOptionValue(ComputerPasswordGenerator::OPTION_LOWER_CASE, true)
+            ->setOptionValue(ComputerPasswordGenerator::OPTION_NUMBERS, true)
+            ->setOptionValue(ComputerPasswordGenerator::OPTION_SYMBOLS, false)
+        ;
+
+        return $generator->generatePassword(10);
+
+    };
