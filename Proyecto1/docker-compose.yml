@@ -63,20 +63,20 @@ services:
     networks:
       - proyecto1
 
-  openldap:
-    image: bitnami/openldap:latest
-    ports:
-      - 1389:1389
-      - 1636:1636
-    environment:
-      - LDAP_ADMIN_USERNAME=root
-      - LDAP_ADMIN_PASSWORD=toor
-      - LDAP_USERS=irene
-      - LDAP_PASSWORDS=toor
-    networks:
-      - proyecto1
-    volumes:
-      - .docker/openldap_data:/bitnami/openldap
+ # openldap:
+  #  image: bitnami/openldap:latest
+   # ports:
+    #  - 1389:1389
+    #  - 1636:1636
+    #environment:
+     # - LDAP_ADMIN_USERNAME=root
+     # - LDAP_ADMIN_PASSWORD=toor
+     # - LDAP_USERS=irene
+     # - LDAP_PASSWORDS=toor
+   # networks:
+    #  - proyecto1
+    #volumes:
+     # - .docker/openldap_data:/bitnami/openldap
 
 
 
