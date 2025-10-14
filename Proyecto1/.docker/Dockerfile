@@ -1,5 +1,5 @@
 FROM php:8.3-apache
-
+RUN useradd ciclost && usermod -aG sudo ciclost
 RUN a2enmod rewrite
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \

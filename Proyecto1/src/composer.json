@@ -19,6 +19,7 @@
     "require": {
         "nesbot/carbon": "^3.10",
         "ramsey/uuid": "^4.9",
-        "phroute/phroute": "^2.2"
+        "phroute/phroute": "^2.2",
+        "hackzilla/password-generator": "^1.7"
     }
 }

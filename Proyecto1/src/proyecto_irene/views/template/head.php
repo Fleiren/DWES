@@ -14,11 +14,21 @@
         rel="canonical"
         href="https://getbootstrap.com/docs/5.3/examples/headers/"
     />
-    <script src="./views/template/assets/js/color-modes.js"></script>
-    <link href="./views/template/assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+            rel="canonical"
+            href="https://getbootstrap.com/docs/5.3/examples/carousel/"
+    />
+    <script src="<?=DIR_ASSETS_PROYECTO?>/js/color-modes.js"></script>
+    <script src="<?=DIR_JS_PROYECTO?>/cheatsheet.js"></script>
+    <link href="<?=DIR_ASSETS_PROYECTO?>/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<?=DIR_CSS_PROYECTO?>/cheatsheet.css" rel="stylesheet" />
+    <link href="<?=DIR_CSS_PROYECTO?>/cheatsheet.rtl.css" rel="stylesheet" />
+    <link href="<?=DIR_CSS_PROYECTO?>/carousel.css" rel="stylesheet" />
+    <link href="<?=DIR_CSS_PROYECTO?>/carousel.rtl.css" rel="stylesheet" />
     <meta name="theme-color" content="#712cf9" />
-    <link href="./views/template/css/headers.css" rel="stylesheet" />
+    <link href="<?=DIR_CSS_PROYECTO?>/headers.css" rel="stylesheet" />
     <style>
+
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;

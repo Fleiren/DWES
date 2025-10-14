@@ -1,15 +1,41 @@
 <?php
+include_once "proyecto_irene/env.php";
 include_once "vendor/autoload.php";
+
+
 use Phroute\Phroute\RouteCollector;
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 
 $router = new RouteCollector();
 
-$router->get('/', function(){
+$router->get('/', function (){
+    include_once("proyecto_irene/views/home.php");
+});
+
+$router->get('/password/create', function (){
+    include_once("proyecto_irene/views/password.php");
+});
+
+$router->post('/password', function (){
+    include_once("proyecto_irene/views/mostrar-password.php");
+});
+
+
+
+
+
+
+
+
+
+
+
+
+$router->get('/1', function(){
     return "Estoy en la página de principal";
 });
 
-$router->get('admin/', function(){
+$router->get('/admin', function(){
     include_once "views/indice.php";
 });
 
