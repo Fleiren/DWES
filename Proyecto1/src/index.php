@@ -3,7 +3,10 @@ include_once "proyecto_irene/env.php";
 include_once "vendor/autoload.php";
 
 
+
+use App\Controller\UserController;
 use Phroute\Phroute\RouteCollector;
+use App\Controller\MovieController;
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 
 $router = new RouteCollector();
@@ -50,6 +53,28 @@ $router->get('/pass', function(){
    }
 
 });
+
+  //Rutas de Usuario
+//Rutas de servicio API REST
+
+$router->get('/user',[UserController::class, 'index']);
+$router -> get('/user/{id}',[UserController::class,'show']);
+$router -> post('/user', [UserController::class,'store']);
+$router -> put('/user',[UserController::class,'update']);
+$router -> delete('/user',[UserController::class,'destroy']);
+
+$router -> post('/user/create', [UserController::class,'create']);
+$router -> post('/user/{id}/edit', [UserController::class,'edit']);
+
+$router->get('/movie',[MovieController::class, 'index']);
+$router -> get('/movie/{id}', [MovieController::class,'show']);
+$router -> post('/movie', [MovieController::class,'store']);
+$router -> put('/movie',[MovieController::class,'update']);
+$router -> delete('/movie',[MovieController::class,'destroy']);
+
+$router -> post('/movie/create', [MovieController::class,'create']);
+$router -> post('/movie/{id}/edit', [MovieController::class,'edit']);
+
 
 $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
 

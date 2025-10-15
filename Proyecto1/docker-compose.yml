@@ -6,7 +6,7 @@ services:
       context: ./.docker
       dockerfile: Dockerfile
     container_name: containerphp
-    user: ciclost:ciclost
+    #user: ciclost:ciclost
     #Crear un volumen para almacenar mi página web
     volumes:
       - ./src:/var/www/html
