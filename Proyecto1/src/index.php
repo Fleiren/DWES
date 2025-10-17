@@ -7,6 +7,7 @@ include_once "vendor/autoload.php";
 use App\Controller\UserController;
 use Phroute\Phroute\RouteCollector;
 use App\Controller\MovieController;
+use App\Controller\DirectorController;
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 
 $router = new RouteCollector();
@@ -60,21 +61,28 @@ $router->get('/pass', function(){
 $router->get('/user',[UserController::class, 'index']);
 $router -> get('/user/{id}',[UserController::class,'show']);
 $router -> post('/user', [UserController::class,'store']);
-$router -> put('/user',[UserController::class,'update']);
-$router -> delete('/user',[UserController::class,'destroy']);
+$router -> put('/user/{id}',[UserController::class,'update']);
+$router -> delete('/user/{id}',[UserController::class,'destroy']);
 
 $router -> post('/user/create', [UserController::class,'create']);
 $router -> post('/user/{id}/edit', [UserController::class,'edit']);
 
+//Rutas de movie
 $router->get('/movie',[MovieController::class, 'index']);
 $router -> get('/movie/{id}', [MovieController::class,'show']);
 $router -> post('/movie', [MovieController::class,'store']);
-$router -> put('/movie',[MovieController::class,'update']);
-$router -> delete('/movie',[MovieController::class,'destroy']);
+$router -> put('/movie/{id}',[MovieController::class,'update']);
+$router -> delete('/movie/{id}',[MovieController::class,'destroy']);
 
-$router -> post('/movie/create', [MovieController::class,'create']);
+$router -> post('/create-movie', [MovieController::class,'create']);
 $router -> post('/movie/{id}/edit', [MovieController::class,'edit']);
 
+//Rutas de director
+$router -> get('/director', [DirectorController::class, 'index']);
+$router -> get('/director/{id}', [DirectorController::class,'show']);
+$router -> post('/director', [DirectorController::class,'store']);
+$router -> put('/director/{id}',[DirectorController::class,'update']);
+$router -> delete('/director/{id}', [DirectorController::class,'destroy']);
 
 $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
 
