@@ -1,0 +1,40 @@
+.env
+
+# -------------------------------------------------------------
+# 1. DEPENDENCIAS GENERADAS
+# -------------------------------------------------------------
+# Ignorar las carpetas de dependencias de PHP y Composer.
+# Se deben regenerar con "composer install".
+vendor/
+
+# -------------------------------------------------------------
+# 2. ARCHIVOS DE PHPSTORM / IDE
+# -------------------------------------------------------------
+# Ignorar la configuración local del IDE
+.idea/
+.vscode/
+
+# -------------------------------------------------------------
+# 3. ARCHIVOS BINARIOS Y LOGS
+# -------------------------------------------------------------
+# Archivos temporales
+*.log
+*.ini
+
+# Herramientas de Composer
+composer.phar
+composer-setup.php
+
+# -------------------------------------------------------------
+# 4. ARCHIVOS ESPECÍFICOS DE DOCKER
+# -------------------------------------------------------------
+# Ignorar carpetas de datos persistentes de las bases de datos
+# Esto soluciona errores de "Permiso denegado" por archivos internos.
+.docker/mariadb/
+.docker/mongo/
+.docker/redis/
+# Asegúrate de que esta línea esté presente:
+Proyecto_Irene/.docker/mariadb/
+Proyecto1/.docker/
+# Ignorar archivos locales de configuración de Docker Compose
+docker-compose.override.yml

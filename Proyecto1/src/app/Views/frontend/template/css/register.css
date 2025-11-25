@@ -1,0 +1,113 @@
+/*
+ * --------------------------------
+ * Estilos Generales (Inspiración Netflix)
+ * --------------------------------
+ */
+
+/* Aplicar un fondo oscuro y tipografía clara a todo el cuerpo */
+body {
+    background-color: #141414; /* Negro muy oscuro, casi el de Netflix */
+    color: #ffffff; /* Texto blanco para el contraste */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Tipografía limpia y moderna */
+    display: flex; /* Para centrar el contenido principal */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Asegura que ocupe toda la altura de la vista */
+    margin: 0;
+    padding: 20px;
+}
+
+/* Título principal */
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700; /* Negrita */
+    margin-bottom: 20px;
+    color: #e50914; /* El rojo característico de Netflix para un toque de marca */
+    text-align: center;
+}
+
+/*
+ * --------------------------------
+ * Estilos del Formulario
+ * --------------------------------
+ */
+
+form {
+    background-color: #000000; /* Fondo negro puro para el contenedor del formulario (resalta sobre el fondo 141414) */
+    padding: 60px 68px;
+    border-radius: 4px; /* Bordes ligeramente redondeados */
+    width: 100%;
+    max-width: 450px; /* Tamaño típico de los formularios de inicio de sesión de Netflix */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra sutil */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Etiquetas (Labels) */
+label {
+    display: block; /* Ocupa todo el ancho */
+    margin-top: 16px;
+    margin-bottom: 6px;
+    font-size: 1rem;
+    font-weight: 400; /* Normal */
+    color: #a3a3a3; /* Gris claro para las etiquetas, un toque más sutil */
+}
+
+/* Campos de entrada (Inputs de texto, email, number, password) y Select */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #333333; /* Gris oscuro para los campos */
+    color: #ffffff; /* Texto de entrada blanco */
+    font-size: 1rem;
+    line-height: 1.2;
+    box-sizing: border-box; /* Asegura que el padding no aumente el ancho total */
+}
+
+/* Estilo para el texto placeholder */
+::placeholder {
+    color: #a3a3a3;
+    opacity: 1; /* Para Firefox */
+}
+
+/* Foco en los campos (Input Focus) */
+input:focus,
+select:focus {
+    outline: none; /* Eliminar el borde de enfoque predeterminado */
+    /* Usar una sombra para un efecto de "resplandor" suave, mejor que un borde sólido */
+    box-shadow: 0 0 0 2px #e50914; /* Rojo Netflix para indicar que está activo */
+    background-color: #444444; /* Un poco más claro al enfocar */
+}
+
+/* Botón de Registro (Submit) */
+input[type="submit"] {
+    background-color: #e50914; /* El rojo primario de Netflix */
+    color: #ffffff;
+    font-weight: 700; /* Negrita */
+    font-size: 1rem;
+    padding: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 24px;
+    transition: background-color 0.2s ease; /* Transición suave para el hover */
+}
+
+/* Efecto Hover en el botón */
+input[type="submit"]:hover {
+    background-color: #f40712; /* Un rojo ligeramente más brillante al pasar el ratón */
+}
+
+/* Estilo para el elemento Select */
+select {
+    appearance: none; /* Oculta la flecha por defecto del sistema */
+    /* Si quieres poner una flecha personalizada, requeriría más CSS o un contenedor */
+}

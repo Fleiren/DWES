@@ -1,0 +1,58 @@
+# ----------------------------------------------------------------------
+# DOCKER-COMPOSE BASE (COMPARTIDO Y PARA GIT)
+# Contiene la configuración genérica que funciona para todos.
+# ----------------------------------------------------------------------
+services:
+
+  app_php:
+    build:
+      context: ./.docker
+      dockerfile: Dockerfile
+      args:
+        - USER_UID=${USER_UID}
+        - USER_GID=${USER_GID}
+        - USERNAME=${USERNAME}
+    # container_name: No se define aquí para permitir el override
+
+    # Usamos el UID:GID para evitar el error de usuario no encontrado (Configuración estándar)
+    user: 1000:1000
+
+    # Puertos web: Definimos el mapeo interno 80:80, el usuario lo anulará.
+    #ports:
+     #- 80
+    expose:
+      - 80
+
+    # Volumenes: esto monta el código fuente y las configuraciones.
+    volumes:
+      # Codigo fuente
+      - ./src:/var/www/html
+      # Configuramos Apache, PHP y Xdebug
+      - .docker/apache/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
+      #- .docker/apache/apache2.conf:/etc/apache2/apache2.conf
+      - .docker/php/php.ini-development:/usr/local/etc/php/php.ini-development
+      - .docker/xdebug/debug.ini:/usr/local/etc/php/conf.d/debug.ini
+
+    networks:
+      - proyecto_irene
+
+  mariadb:
+    image: mariadb:latest
+    volumes:
+      - .docker/mariadb:/var/lib/mysql:Z
+    ports:
+      - 3308:3306
+    networks:
+      - proyecto_irene
+    environment:
+      MARIADB_ROOT_PASSWORD: patito1506
+      MARIADB_DATABASE: proyecto_irene
+      MARIADB_USER: irene
+      MARIADB_PASSWORD: patito1506
+    command:
+      --default-authentication-plugin=mysql_native_password
+
+networks:
+  proyecto_irene:
+    name: proyecto_irene
+    driver: bridge
