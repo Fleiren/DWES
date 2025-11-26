@@ -23,4 +23,3 @@ $dispatcher = new Dispatcher($router->getData());
 $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 #Imprimir el resultado que devuelve el controlador.
 echo $response;
-

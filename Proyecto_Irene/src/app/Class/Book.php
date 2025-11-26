@@ -12,9 +12,11 @@ class Book implements \JsonSerializable {
     private int $pages;
     private string $cover;
 
+    //IRENE SOY ÁLVARO, CREO QUE TE FALTA EL CONSTRUCTOR DE ESTA CLASE XD
+
     public function jsonSerialize(): mixed
     {
-        return[
+        return [
             "uuid" => $this->uuid,
             "title" => $this->title,
             "author" => $this->author,
