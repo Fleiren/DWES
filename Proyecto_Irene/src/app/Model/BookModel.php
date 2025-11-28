@@ -4,15 +4,87 @@ namespace App\Models;
 
 # Importamos la clase book ya que devolveremos objetos book
 use App\Class\Book;
-#Importamos la librería de UUIDs para trabjar con el formato binario/cadena
+#Importamos la librería de UUIDs para la id.
+use PDO;
+use PDOException;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 class BookModel {
 
-    private function connectDB(): \PDO {
-    try{
-        $conexion = new PDO("mysql:host=mariadb;dbname=proyecto_irene", "irene", "toor");
+    private static function connectDB(): PDO {
+        $conexion = new PDO("mysql:host=mariadb;dbname=proyecto_irene", "irene", "patito1506");
+        $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $conexion;
     }
-    }
+
+   public static function getAllBooks(): ?array {
+         try{
+             $conexion = BookModel::connectDB();
+         }catch(PDOException $error){
+             echo $error->getMessage();
+             return null;
+         }
+         $sql = "SELECT * FROM books";
+         $stmt = $conexion->prepare($sql);
+         $stmt->execute();
+         $resultado =  $stmt->fetchAll(PDO::FETCH_OBJ);
+
+         if($resultado){
+             $books = [];
+             foreach ($resultado as $book){
+                 $books[] = Book::createFromArray($book);
+             }
+             return $books;
+         }else{
+             return null;
+         }
+
+   }
+
+    public static function getBookById(string $uuidString): ?Book {
+         try{
+             $conexion = BookModel::connectDB();
+         }catch(PDOException $error){
+             echo $error->getMessage();
+             return null;
+         }
+         $sql = "SELECT * FROM books WHERE uuid = :uuidString";
+         $stmt = $conexion->prepare($sql);
+         $stmt->bindParam('uuidString', $uuidString);
+         $stmt->execute();
+         $resultado = $stmt->fetch(PDO::FETCH_OBJ);
+         if($resultado){
+             $book = Book::createFromArray($resultado);
+             return $book;
+         }else{
+             return null;
+         }
+   }
+
+   public static function deleteBookById(string $uuidString) : bool {
+        try{
+            $conexion = BookModel::connectDB();
+        }catch(PDOException $error){
+            echo $error->getMessage();
+            return false;
+       }
+       $sql = "DELETE FROM books WHERE uuid = :uuidString";
+       $stmt = $conexion->prepare($sql);
+       $stmt ->bindParam('uuidString', $uuidString);
+       $stmt->execute();
+       $resultado = $stmt->rowCount();
+       if($resultado > 0){
+           return true;
+       }else{
+           return false;
+       }
+   }
+
+   public static function updateBookById(string $uuidString, array $bookData): bool {
+        $book = BookModel::getBookById($uuidString);
+        if($book){
+
+        }
+   }
 }
