@@ -8,6 +8,7 @@ CREATE TABLE books (
     synopsis TEXT ,
     author VARCHAR(255) NOT NULL,
     pages INT NOT NULL,
-    cover VARCHAR(512)
+    cover VARCHAR(512),
+    isbn VARCHAR(13) NOT NULL
 )
 
