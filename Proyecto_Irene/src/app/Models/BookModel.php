@@ -28,7 +28,7 @@ class BookModel {
          $sql = "SELECT * FROM books";
          $stmt = $conexion->prepare($sql);
          $stmt->execute();
-         $resultado =  $stmt->fetchAll(PDO::FETCH_OBJ);
+         $resultado =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
          if($resultado){
              $books = [];
@@ -53,7 +53,7 @@ class BookModel {
          $stmt = $conexion->prepare($sql);
          $stmt->bindParam('uuidString', $uuidString);
          $stmt->execute();
-         $resultado = $stmt->fetch(PDO::FETCH_OBJ);
+         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
          if($resultado){
              $book = Book::createFromArray($resultado);
              return $book;
@@ -93,7 +93,7 @@ class BookModel {
         $stmt = $conexion->prepare("sql");
         $stmt -> bindParam("isbn", $isbn);
         $stmt -> execute();
-        $resultado = $stmt->fetch(PDO::FETCH_OBJ);
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
         if($resultado){
             return true;
         }else{
@@ -101,7 +101,7 @@ class BookModel {
         }
    }
 
-   //Arreglar estos métodos y empezar el index.
+
    public static function updateBookById(string $uuidString, Book $book): bool {
 
         try{
@@ -114,11 +114,11 @@ class BookModel {
         $sql = "UPDATE books SET title = :title, synopsis = :synopsis, author = :author, pages = :pages, isbn = :isbn WHERE uuid = :uuidString";
         $stmt = $conexion->prepare($sql);
         $stmt->bindValue("title", $book->getTitle());
-        $stmt->bindParam("synopsis", $bookData["synopsis"]);
-        $stmt->bindParam("author", $bookData["author"]);
-        $stmt->bindParam("pages", $bookData["pages"]);
-        $stmt->bindParam("isbn", $bookData["isbn"]);
-        $stmt->bindParam("uuidString", $uuidString);
+        $stmt->bindValue("synopsis", $book->getSynopsis());
+        $stmt->bindValue("author", $book->getAuthor());
+        $stmt->bindValue("pages", $book->getPages());
+        $stmt->bindValue("isbn", $book->getIsbn());
+        $stmt->bindValue("uuidString", $uuidString);
         $stmt->execute();
         $resultado = $stmt->rowCount();
         if($resultado > 0){
@@ -128,19 +128,28 @@ class BookModel {
         }
    }
 
-   public static function insertBook(array $bookData): bool {
-        if(!Book::validateBook($bookData) || BookModel::existsBookByIsbn($bookData["isbn"])){
-            return false;
-        }
+   public static function insertBook(Book $book): bool {
         try{
             $conexion = BookModel::connectDB();
-        }catch(PDOException $error){
+        }catch(PDOException $error) {
             echo $error->getMessage();
             return false;
         }
-        $book = Book::createFromArray($bookData);
-        $sql = "INSERT INTO books VALUES (:uuid, :title, :synopsis, :author, :pages, :cover, :isbn)"
+        $sql = "INSERT INTO books VALUES (:uuid, :title, :synopsis, :author, :pages, :cover, :isbn)";
         $stmt = $conexion->prepare($sql);
-        $stmt->bindParam("title", $book->getTitle());
+        $stmt->bindValue("uuid", $book->getUuid());
+        $stmt->bindValue("title", $book->getTitle());
+        $stmt->bindValue("synopsis", $book->getSynopsis());
+        $stmt->bindValue("author",$book->getAuthor());
+        $stmt->bindValue("pages", $book->getPages());
+        $stmt->bindValue("cover", $book->getCover());
+        $stmt->bindValue("isbn", $book->getIsbn());
+        $stmt->execute();
+        $resultado = $stmt->rowCount();
+        if($resultado > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

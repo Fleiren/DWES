@@ -38,3 +38,14 @@ Proyecto_Irene/.docker/mariadb/
 Proyecto1/.docker/
 # Ignorar archivos locales de configuración de Docker Compose
 docker-compose.override.yml
+
+.env.local
+.env.development
+.env.production
+.env.*
+
+/src/vendor/
+/src/vendor/autoload.php
+/node_modules/
+/docker-logs/
+/tmp/*

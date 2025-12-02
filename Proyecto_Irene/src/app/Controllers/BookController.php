@@ -1,15 +1,22 @@
 <?php
-
 namespace App\Controllers;
 
-use App\Interface\ControllerInterface;
 
-class MovieController implements ControllerInterface
-{
+use App\Interfaces\ControllerInterface;
+use App\Models\BookModel;
+
+class BookController implements ControllerInterface {
 
     function index()
     {
-        // TODO: Implement index() method.
+        $books = BookModel::getAllBooks();
+        $title = "Listado de Libros";
+        if($books === null){
+            $error = "No se han podido cargar los libros";
+            include_once DIRECTORIO_VISTAS."error.php";
+        }else{
+            include_once DIRECTORIO_VISTAS_FRONTEND."listBooks.php";
+        }
     }
 
     function show($id)
@@ -34,7 +41,7 @@ class MovieController implements ControllerInterface
 
     function create()
     {
-
+        // TODO: Implement create() method.
     }
 
     function edit($id)

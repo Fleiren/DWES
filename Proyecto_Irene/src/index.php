@@ -10,11 +10,13 @@ session_start();
 use Phroute\Phroute\RouteCollector;
 use Phroute\Phroute\Dispatcher;
 #Importamos controladores:
+use App\Controllers\BookController;
 
 #Declaramos la variable $routes para crear rutas:
 $router = new RouteCollector();
 #A partir de aquí declaramos las rutas:
 
+$router->get('/books', [BookController::class, 'index']);
 
 #Aquí en el final declaramos el dispatcher para que se muestre el resultado de las rutas:
 

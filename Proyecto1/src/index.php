@@ -4,10 +4,10 @@ include_once "vendor/autoload.php";
 
 session_start();
 use App\Class\User;
-use App\Controller\UserController;
+use App\Controllers\UserController;
 use Phroute\Phroute\RouteCollector;
-use App\Controller\MovieController;
-use App\Controller\DirectorController;
+use App\Controllers\MovieController;
+use App\Controllers\DirectorController;
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 
 $router = new RouteCollector();
