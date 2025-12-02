@@ -17,6 +17,9 @@ $router = new RouteCollector();
 #A partir de aquí declaramos las rutas:
 
 $router->get('/books', [BookController::class, 'index']);
+$router->get('/admin', [BookController::class, 'admin']);
+$router->get('/admin/book/create', [BookController::class, 'create']);
+$router->post('/admin/book/create', [BookController::class, 'store']);
 
 #Aquí en el final declaramos el dispatcher para que se muestre el resultado de las rutas:
 

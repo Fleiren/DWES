@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 
+use App\Class\Book;
 use App\Interfaces\ControllerInterface;
 use App\Models\BookModel;
 
@@ -26,8 +27,29 @@ class BookController implements ControllerInterface {
 
     function store()
     {
-        // TODO: Implement store() method.
+        if (Book::validateBook($_POST)) {
+
+            $book = Book::createFromArray($_POST);
+
+            if (!BookModel::insertBook($book)) {
+                $error = "No se ha podido guardar el libro";
+                include_once DIRECTORIO_VISTAS . "error.php";
+                return;
+            }
+
+            // Redirige a la lista de libros si todo salió bien
+            header("Location: /books");
+            exit;
+
+        } else {
+
+            // Mostrar error de validación
+            $error = "Los datos del libro no son válidos.";
+            include_once DIRECTORIO_VISTAS . "error.php";
+            return;
+        }
     }
+
 
     function update($id)
     {
@@ -41,11 +63,15 @@ class BookController implements ControllerInterface {
 
     function create()
     {
-        // TODO: Implement create() method.
+        include_once DIRECTORIO_VISTAS_BACKEND."createBook.php";
     }
 
     function edit($id)
     {
         // TODO: Implement edit() method.
+    }
+
+    function admin(){
+        include_once DIRECTORIO_VISTAS_BACKEND."adminBooks.php";
     }
 }

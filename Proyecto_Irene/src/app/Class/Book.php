@@ -46,23 +46,39 @@ class Book implements \JsonSerializable {
 
     public static function validateBook(array $bookData) : bool {
         $valid = true;
-        if($bookData["title"] == ""){
+
+        // Validar título
+        if (!isset($bookData["title"]) || trim($bookData["title"]) === "") {
             $valid = false;
         }
-        if($bookData["author"] == ""){
+
+        // Validar autor
+        if (!isset($bookData["author"]) || trim($bookData["author"]) === "") {
             $valid = false;
         }
-        if(is_nan($bookData["pages"]) || ((int) $bookData["pages"]) < 1 || $bookData["pages"] == null ){
+
+        // Validar páginas
+        if (
+            !isset($bookData["pages"]) ||
+            !is_numeric($bookData["pages"]) ||
+            (int)$bookData["pages"] < 1
+        ) {
             $valid = false;
         }
-        if($bookData["cover"].str_starts_with("http")){
+
+        // Validar URL de la portada (NO debe empezar por http según tu lógica)
+        if (isset($bookData["cover"]) && $bookData["cover"] !== "" && !str_starts_with($bookData["cover"], "http")) {
             $valid = false;
         }
-        if($bookData["isbn"] == ""){
+
+        // Validar ISBN
+        if (!isset($bookData["isbn"]) || trim($bookData["isbn"]) === "") {
             $valid = false;
         }
+
         return $valid;
     }
+
 
     /**
      * @return UuidInterface
