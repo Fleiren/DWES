@@ -1,0 +1,338 @@
+/*
+ * Estilos Base para la Página de Libros
+ * Paleta de colores sencilla en tonos marrones y tierra.
+ */
+
+:root {
+    /* Paleta de Colores Marrones y Tierra */
+    --color-primary-dark: #4E342E;      /* Marrón muy oscuro (Texto principal, fondos de encabezado) */
+    --color-secondary-brown: #6D4C41;   /* Marrón medio (Botones, acentos, enlaces) */
+    --color-tertiary-light: #A1887F;    /* Marrón claro (Bordes, hover) */
+    --color-background-paper: #F7F3E8;  /* Tono pergamino/papel (Fondo principal) */
+    --color-text-body: #3E2723;         /* Marrón casi negro (Texto del cuerpo) */
+    --color-white: #FFFFFF;
+
+    /* Colores Específicos para Admin */
+    --color-action-delete: #B71C1C;     /* Rojo oscuro para la acción de eliminar */
+    --color-action-edit: #1B5E20;       /* Verde oscuro para la acción de editar */
+}
+
+/* ---------------------------------- */
+/* BASE Y TIPOGRAFÍA */
+/* ---------------------------------- */
+body {
+    font-family: 'Georgia', serif; /* Fuente con un toque clásico de libro */
+    background-color: var(--color-background-paper);
+    color: var(--color-text-body);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+a {
+    color: var(--color-secondary-brown);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* Títulos un poco más modernos */
+    color: var(--color-primary-dark);
+    margin-bottom: 0.5em;
+}
+
+/* Contenedor principal para centrar el contenido */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ---------------------------------- */
+/* ENCABEZADO Y NAVEGACIÓN (Front y Back) */
+/* ---------------------------------- */
+/* Estilos usados para el header/navbar principal */
+.header, .navbar {
+    background-color: var(--color-primary-dark);
+    color: var(--color-white);
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: flex-start; /* Alineación a la izquierda para el menú de administración */
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.navbar a {
+    color: var(--color-tertiary-light);
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.navbar a:hover {
+    color: var(--color-white);
+    background-color: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+}
+
+
+/* ---------------------------------- */
+/* BOTONES Y FORMULARIOS */
+/* ---------------------------------- */
+.button, button, input[type="submit"] {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--color-secondary-brown);
+    color: var(--color-white);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.button:hover, button:hover, input[type="submit"]:hover {
+    background-color: var(--color-primary-dark);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones específicos de acción en el backend */
+.delete {
+    background-color: var(--color-action-delete); /* Rojo */
+}
+
+.delete:hover {
+    background-color: #8D0000;
+}
+
+.edit {
+    background-color: var(--color-action-edit); /* Verde */
+}
+
+.edit:hover {
+    background-color: #104313;
+}
+
+
+label { /* Estilo base para todas las etiquetas del formulario */
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--color-text-body);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px; /* Reducido para mejor separación visual de grupos */
+    border: 1px solid var(--color-tertiary-light);
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: var(--color-white);
+    color: var(--color-text-body);
+    font-size: 1rem;
+}
+
+/* ---------------------------------- */
+/* FORMULARIOS (ADD/EDIT BOOK) */
+/* ---------------------------------- */
+
+/* Estilo para el fieldset que actúa como tarjeta de formulario */
+fieldset {
+    border: 1px solid var(--color-tertiary-light);
+    padding: 30px;
+    border-radius: 8px;
+    background-color: var(--color-white);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilo para la leyenda (título del fieldset) */
+legend {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primary-dark);
+    padding: 0 10px;
+    background-color: var(--color-background-paper);
+    border-radius: 4px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* El textarea para la sinopsis */
+form textarea {
+    min-height: 150px;
+    resize: vertical;
+    font-family: 'Georgia', serif;
+}
+
+/* ---------------------------------- */
+/* VISTA DE ADMINISTRACIÓN: LISTA DE LIBROS (BOOK-CONTAINER) */
+/* ---------------------------------- */
+
+.book-container {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-tertiary-light);
+    border-radius: 8px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px; /* Separación entre elementos de la lista */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s;
+}
+
+.book-container:hover {
+    background-color: #F3F0E8; /* Resaltar al pasar el ratón */
+}
+
+.book-cover {
+    width: 50px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 2px;
+    flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.book-container h2 {
+    font-size: 1.1rem;
+    margin: 0;
+    font-weight: 600;
+    flex-basis: 25%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.book-container h4 {
+    font-size: 0.9rem;
+    margin: 0;
+    color: var(--color-secondary-brown);
+    font-style: italic;
+    flex-basis: 15%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+/* Ocultamos sinopsis, páginas, y otros datos largos en la vista de lista admin */
+.book-container p:not(:last-of-type), .book-container p:nth-last-of-type(2) {
+    display: none;
+}
+
+/* Mostramos el ISBN y UUID como columnas de datos importantes */
+.book-container p {
+    font-size: 0.85rem;
+    color: #757575;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-basis: 15%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    text-align: right;
+}
+
+/* Contenedor de botones para asegurar que estén al final */
+.book-container .delete, .book-container .edit {
+    margin-left: 10px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+
+/* ---------------------------------- */
+/* TARJETAS DE LIBROS (VISTA DE LISTADO PÚBLICO) */
+/* Dejé estos estilos por si se usa esta clase para el frontend */
+/* ---------------------------------- */
+.book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.book-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-tertiary-light);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.book-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.book-card h3 {
+    margin-top: 0;
+    font-size: 1.3rem;
+    line-height: 1.4;
+}
+
+.book-card p.author {
+    color: var(--color-secondary-brown);
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.book-detail {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.book-detail-image {
+    flex-shrink: 0;
+    max-width: 300px;
+}
+
+.book-detail-content {
+    flex-grow: 1;
+}
+
+.book-detail-content p {
+    margin-bottom: 15px;
+}
+

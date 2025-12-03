@@ -1,9 +1,9 @@
 <?php
-include_once DIRECTORIO_TEMPLATE_BACKEND . "header.php";
+    include_once DIRECTORIO_TEMPLATE_BACKEND."header.php";
 ?>
 <fieldset>
     <legend>Añadir libro</legend>
-    <form action="/book/create" method="post">
+    <form action="/admin/book/create" method="post">
         <label for="inputTitle">Título</label>
         <input type="text" id="inputTitle" name="title">
         <label for="inputAuthor">Autor:</label>

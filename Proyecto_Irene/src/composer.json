@@ -21,6 +21,7 @@
     "ramsey/uuid": "^4.9",
     "phroute/phroute": "^2.2",
     "hackzilla/password-generator": "^1.7",
-    "respect/validation": "^2.4"
+    "respect/validation": "^2.4",
+    "ext-pdo": "*"
   }
 }

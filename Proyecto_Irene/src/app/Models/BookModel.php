@@ -72,7 +72,7 @@ class BookModel {
 
        $sql = "DELETE FROM books WHERE uuid = :uuidString";
        $stmt = $conexion->prepare($sql);
-       $stmt ->bindParam('uuidString', $uuidString);
+       $stmt ->bindParam(':uuidString', $uuidString);
        $stmt->execute();
        $resultado = $stmt->rowCount();
        if($resultado > 0){
@@ -102,7 +102,7 @@ class BookModel {
    }
 
 
-   public static function updateBookById(string $uuidString, Book $book): bool {
+   public static function updateBookById(string $id ,Book $book): bool {
 
         try{
             $conexion = BookModel::connectDB();
@@ -113,12 +113,12 @@ class BookModel {
 
         $sql = "UPDATE books SET title = :title, synopsis = :synopsis, author = :author, pages = :pages, isbn = :isbn WHERE uuid = :uuidString";
         $stmt = $conexion->prepare($sql);
-        $stmt->bindValue("title", $book->getTitle());
-        $stmt->bindValue("synopsis", $book->getSynopsis());
-        $stmt->bindValue("author", $book->getAuthor());
-        $stmt->bindValue("pages", $book->getPages());
-        $stmt->bindValue("isbn", $book->getIsbn());
-        $stmt->bindValue("uuidString", $uuidString);
+        $stmt->bindValue(":title", $book->getTitle());
+        $stmt->bindValue(":synopsis", $book->getSynopsis());
+        $stmt->bindValue(":author", $book->getAuthor());
+        $stmt->bindValue(":pages", $book->getPages());
+        $stmt->bindValue(":isbn", $book->getIsbn());
+        $stmt->bindValue(":uuidString",$id);
         $stmt->execute();
         $resultado = $stmt->rowCount();
         if($resultado > 0){

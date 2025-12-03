@@ -8,7 +8,7 @@ use Ramsey\Uuid\UuidInterface;
 
 class Book implements \JsonSerializable {
 
-    private UuidInterface $uuid;
+    private string $uuid;
     private string $title;
     private string $synopsis;
     private string $author;
@@ -17,7 +17,7 @@ class Book implements \JsonSerializable {
     private string $isbn;
 
     //IRENE SOY ÁLVARO, CREO QUE TE FALTA EL CONSTRUCTOR DE ESTA CLASE XD
-    public function __construct(UuidInterface $uuid, string $title, string $synopsis ,string $author, int $pages, string $cover, string $isbn){
+    public function __construct(string $uuid, string $title, string $synopsis ,string $author, int $pages, string $cover, string $isbn){
         $this->uuid = $uuid;
         $this->title = $title;
         $this->author = $author;
@@ -40,7 +40,7 @@ class Book implements \JsonSerializable {
     }
 
     public static function createFromArray(array $bookData) :Book{
-        $book = new Book(Uuid::uuid4(), $bookData["title"], $bookData["synopsis"], $bookData["author"], $bookData["pages"], $bookData["cover"], $bookData["isbn"]);
+        $book = new Book($bookData["uuid"], $bookData["title"], $bookData["synopsis"], $bookData["author"], $bookData["pages"], $bookData["cover"], $bookData["isbn"]);
         return $book;
     }
 
@@ -83,7 +83,7 @@ class Book implements \JsonSerializable {
     /**
      * @return UuidInterface
      */
-    public function getUuid(): UuidInterface
+    public function getUuid(): string
     {
         return $this->uuid;
     }
@@ -92,7 +92,7 @@ class Book implements \JsonSerializable {
      * @param UuidInterface $uuid
      * @return Book
      */
-    public function setUuid(UuidInterface $uuid): Book
+    public function setUuid(string $uuid): Book
     {
         $this->uuid = $uuid;
         return $this;

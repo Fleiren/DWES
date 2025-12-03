@@ -20,6 +20,9 @@ $router->get('/books', [BookController::class, 'index']);
 $router->get('/admin', [BookController::class, 'admin']);
 $router->get('/admin/book/create', [BookController::class, 'create']);
 $router->post('/admin/book/create', [BookController::class, 'store']);
+$router->get('/admin/book/edit/{id}', [BookController::class, 'edit']);
+$router->put("/admin/book/edit/{id}", [BookController::class, 'update']);
+$router->delete("/admin/book/delete/{id}", [BookController::class, 'destroy']);
 
 #Aquí en el final declaramos el dispatcher para que se muestre el resultado de las rutas:
 
